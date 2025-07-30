@@ -1,0 +1,180 @@
+{% load static %}
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% tailwind_css %}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="{% static 'css/logo.jpg' %}" />
+  <link rel="stylesheet" href="{% static 'css/Gic.css' %}" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+  <!-- Font Awesome (only one version included) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Style CSS -->
+  <link rel="stylesheet" href="{% static 'css/nav2.css' %}" />
+  {% block extra_css %}
+
+  {% endblock extra_css %}
+
+  {% block title %}
+
+  <title>GIC2</title>
+
+  {% endblock title %}
+</head>
+
+
+{% block body %}
+
+
+<body>
+  <div class="main">
+    <!-- Top bar -->
+     {% block socialmedia %}
+    <div class="upper">
+      <div class="socialmedia">
+        <i class="fa-brands fa-instagram"></i>
+        <i class="fa-brands fa-facebook"></i>
+        <i class="fa-brands fa-twitter"></i>
+        <i class="fa-brands fa-linkedin"></i>
+        <input type="text" id="navinput" placeholder="Search..." />
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+      <div class="search">
+        <!-- <input type="text" placeholder="Search..." />
+        <i class="fa-solid fa-magnifying-glass"></i> -->
+      </div>
+    </div>
+    {% endblock socialmedia %}
+
+
+{% block nav %}
+<!-- Middle content -->
+<div class="middle">
+  <div class="logo-container">
+    <img src="{% static 'images/logo.jpg' %}" id="navlogo" alt="logo" class="logo" />
+
+    <div class="heading-block">
+      <h3 class="GICh">ज्ञानोदय इंटर कॉलेज , बेलवानिया</h3>
+      <h6 class="affiliationh">(राज्य बोर्ड उत्तर प्रदेश, लखनऊ से संबद्ध)</h6>
+      <h3 class="GICe">GYANODAY INTER COLLEGE , BELWANIA</h3>
+      <h6 class="affiliatione">(Affiliated to State Board Uttar Pradesh, Lucknow)</h6>
+    </div>
+
+    <img src="{% static 'images/fatherb.jpg' %}" alt="founder" class="founder-img" />
+  </div>
+</div>
+{% endblock nav %}
+
+    {% block nav2 %}
+    <nav>
+      <!-- Hamburger Button (for mobile) -->
+      <div class="hamburger" onclick="toggleMenu()">☰</div>
+
+      <!-- Nav Links -->
+      <div class="nav-container" id="navMenu">
+        <div class="nav-item">
+          <a href="#" class="nav-link">About Gic</a>
+          <div class="dropdown">
+            <a href="#">History</a>
+            <a href="#">Vision & Mission</a>
+            <a href="#">Goals</a>
+            <a href="#">Core Values</a>
+            <a href="#">About City</a>
+            <a href="#">Connectivity</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="#" class="nav-link">Downloads</a>
+          <div class="dropdown">
+            <a href="{% url 'gallery' %}">Gallery</a>
+            <a href="#">Shortcuts</a>
+            <a href="#">Exhibits</a>
+            <a href="#">Events</a>
+            <a href="#">Store</a>
+            <a href="{% url 'contact' %}">Contact</a>
+            <a href="#">Feedback</a>
+          </div>
+        </div>
+
+<div class="nav-item"><a href="#" class="nav-link">Administration</a></div>
+<div class="nav-item"><a href="#" class="nav-link">Notice</a></div>
+<div class="nav-item"><a href="#" class="nav-link">Academics</a></div>
+<div class="nav-item"><a href="#" class="nav-link">Student Activities & Sports</a></div>
+<div class="nav-item"><a href="#" class="nav-link">Alumni</a></div>
+<div class="nav-item"><a href="#" class="nav-link">Account ▼</a>
+<div class="dropdown">
+            {% if user.is_authenticated %}
+                <a href="#">Hi, {{ user.username }}</a>
+                <a href="{% url 'logout' %}">Logout</a>
+              {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                <a href="/auth/register/">Register</a>
+              {% endif %}
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    {% endblock nav2 %}
+
+    <!-- Footer / Bottom section -->
+
+  </div>
+  {% block contant %}
+  <div class="">
+  <div class="lower from-stone-50 opacity-100" id="bg-slider">
+    <h1>asd</h1>
+    <h1>dsa</h1>
+    <h1>dsa</h1>
+    <h1>dads</h1>
+    <h1>dasd</h1>
+</div>
+  </div>
+
+
+</div>
+  {% endblock contant %}
+  <div class="">fe</div>
+
+
+
+
+
+
+
+
+<script>
+  const images = [
+    {% for img in background %}
+      "{{ img.image.url }}",
+    {% endfor %}
+  ];
+
+  let current = 0;
+  const bgDiv = document.getElementById("bg-slider");
+
+  function changeBackground() {
+    if (bgDiv) {
+      bgDiv.style.backgroundImage = `url('${images[current]}')`;
+      current = (current + 1) % images.length;
+    }
+  }
+
+  changeBackground();
+  setInterval(changeBackground, 3000);
+</script>
+
+  <script src="{% static 'js/main.js' %}"></script>
+</body>
+{% endblock body %}
+
+</html>

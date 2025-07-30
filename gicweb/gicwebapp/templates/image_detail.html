@@ -1,0 +1,54 @@
+{% extends "Gic2.html" %}
+{% load static %}
+<div class="bg-indigo-600">
+    ouiouou
+
+</div>
+
+{% block title %}
+
+  <title>gallery image <details></details></title>
+  
+{% endblock title %}
+
+{% block socialmedia %}         {% endblock socialmedia %}
+{% block middle %}              {% endblock middle %}
+
+{% block contant %}
+<div class="container mx-auto py-6">
+    <a href="{% url 'gallery' %}" class="bg-red-700 text-white p-2 rounded font-bold underline mb-4 inline-block ">← Back to Gallery</a>
+
+    <h1 class="text-3xl font-bold mb-4">{{ event.title }} - {{ event.date }}</h1>
+    <p class="mb-4">{{ event.description }}</p>
+
+
+<!-- Thumbnail Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {% for photo in photos %}
+        <div class="rounded overflow-hidden shadow hover:shadow-lg">
+            <img src="{{ photo.image.url }}" class="w-full h-48 object-cover zoomable cursor-pointer rounded-xl shadow-lg" alt="Photo"  onclick="openLightbox(this.src)" >
+            {% if photo.description %}
+            <p class="text-sm p-2">{{ photo.description }}</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    
+<!-- Lightbox Modal -->
+<div id="lightbox" class="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50 hidden" onclick="closeLightbox()">
+  <img id="lightbox-img" class="max-w-full max-h-full rounded-xl border-4 border-white">
+</div>
+
+</div>
+<script>
+function openLightbox(src) {
+  document.getElementById("lightbox-img").src = src;
+  document.getElementById("lightbox").classList.remove("hidden");
+}
+
+function closeLightbox() {
+  document.getElementById("lightbox").classList.add("hidden");
+}
+</script>
+
+{% endblock contant %}

@@ -1,0 +1,67 @@
+{% extends "Gic2.html" %}
+{% load static %}
+<div class="bg-indigo-600">
+    ouiouou
+
+</div>
+
+{% block title %}
+
+  <title>gallery</title>
+  
+{% endblock title %}
+
+{% block socialmedia %}         {% endblock socialmedia %}
+{% block middle %}              {% endblock middle %}
+
+{% block contant %}
+<hr>
+<div class=""></div>
+<h1 class="text-center text-3xl font-bold mb-4 ">Photo Gallery</h1>
+<a href="/" class="bg-red-700 text-white p-2 rounded font-bold no-underline mb-4 inline-block ">← Back to Home</a>
+
+<div class="flex flex-wrap justify-between bg-blue-900 text-white p-4 rounded mb-6">
+  <div>Total Categories: {{ categories.count }}</div>
+
+  <form method="get" class="flex flex-wrap gap-2">
+    <select name="year" class="text-black px-2 py-1 rounded">
+      <option value="">All Years</option>
+      {% for y in years %}
+        <option value="{{ y }}" {% if y|stringformat:"s" == request.GET.year %}selected{% endif %}>{{ y }}</option>
+      {% endfor %}
+    </select>
+
+    <select name="category" class="text-black px-2 py-1 rounded">
+      <option value="all">All Categories</option>
+      {% for cat in categories %}
+        <option value="{{ cat.id }}" {% if cat.id|stringformat:"s" == request.GET.category %}selected{% endif %}>{{ cat.name }}</option>
+      {% endfor %}
+    </select>
+
+    <input type="text" name="search" placeholder="Search Here.." class="px-2 py-1 text-black rounded" value="{{ request.GET.search }}"/>
+    <button type="submit" class="bg-white text-blue-900 px-2 py-1 rounded">Filter</button>
+  </form>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+  {% for event in events %}
+  <a href="{% url 'event_detail' event.id %}" class="block bg-white rounded shadow-md overflow-hidden relative hover:shadow-lg transition">
+    {% if event.photos.first %}
+      <img src="{{ event.photos.first.image.url }}" class="w-full h-48 object-cover"/>
+    {% endif %}
+
+    <div class="absolute top-2 left-2 bg-red-600 text-white px-2 py-1 text-sm rounded">
+      <i class="fas fa-image"></i> {{ event.photo_count }}
+    </div>
+
+    <div class="p-4">
+      <h3 class="font-bold text-lg text-red-800">{{ event.title }}</h3>
+      <p class="text-sm text-gray-700">{{ event.description }}</p>
+      <p class="text-sm text-gray-500 mt-2"><i class="fas fa-calendar-alt"></i> {{ event.date }}</p>
+    </div>
+  </a>
+{% endfor %}
+
+</div>
+
+{% endblock contant %}

@@ -1,0 +1,154 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: aliceblue;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.5;
+  }
+  
+  .main {
+    width: 100%;
+  }
+  
+  /* Upper Section */
+  .upper {
+    display: flex;
+    justify-content: end;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: #002452;
+    color: white;
+    padding: 0.5rem 1rem;
+  }
+  
+  .socialmedia i{
+    margin: 0 0.4rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  
+  .socialmedia i:hover{
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+  
+  .socialmedia input {
+    padding: 0.4rem;
+    border-radius: 0.2rem;
+    border: none;
+    padding-right: 0.5rem;
+  }
+  
+
+/************           nav start           *****************/
+/* Main layout for large screens */
+.logo-container {
+  display: flex;
+  flex-wrap: nowrap; /* forces one row */
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 20px;
+  background-color: white;
+  overflow-x: auto; /* optional: allow horizontal scroll if too narrow */
+}
+
+/* Logo image */
+.logo-container .logo {
+  flex: 0 0 auto;
+  max-width: 80px;
+  height: auto;
+}
+
+/* Heading block (center text block) */
+.heading-block {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+}
+
+/* Founder image */
+.founder-img {
+  flex: 0 0 auto;
+  max-width: 80px;
+  height: auto;
+}
+
+/* Text styling */
+.heading-block h3 {
+  font-size: 20px;
+  margin: 4px 0;
+  white-space: nowrap; /* keep in one line if needed */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.heading-block h6 {
+  font-size: 12px;
+  margin: 2px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Responsive shrink for mobile */
+@media screen and (max-width: 600px) {
+  .logo-container .logo,
+  .founder-img {
+    max-width: 50px;
+  }
+
+  .heading-block h3 {
+    font-size: 16px;
+  }
+
+  .heading-block h6 {
+    font-size: 11px;
+  }
+}
+/**********         end nav              ****************/
+
+  
+  /* Lower Section */
+  .lower {
+  height: 100vh; /* Full screen height */
+  width: 100%;   /* Full width */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: background-image 1s ease-in-out;
+}
+  #bg{
+    background-size: 1600px 900px;
+    background-repeat: no-repeat;
+    background-position: top;
+    /* background-attachment: fixed; */
+    /* height: auto; */
+    background-position:inherit;
+}
+
+  
+  /* Media Queries */
+@media screen and (max-width: 390px) {
+/* upper */
+   .upper {
+    padding: 0px;
+  }
+  #navinput{
+    height: 20px;
+    width: 35%;
+  }
+    .search input {
+      width: 100px;
+    }
+    
+/* end uper */
+}
+
+@media only screen and (max-width: 600px) {
+
+}
